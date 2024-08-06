@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos</title>
+    <link rel="stylesheet" href="./styles/proyecto.css">
+</head>
+<body>
+    <div class="search-container">
+        <input  type="text" id="search-name" placeholder="Buscar por nombre de proyecto">
+        <select id="search-status">
+            <option value="">Buscar por estado</option>
+            <option value="Completado">Completado</option>
+            <option value="En progreso">En progreso</option>
+            <option value="Pendiente">Pendiente</option>
+        </select>
+        <input type="date" id="search-date">
+    </div>
+    <div class="projects-container" id="projects-container">
+        <!-- Aquí se mostrarán los proyectos -->
+    </div>
+
+    <script type="module" src="../controller/main.js"></script>
+</body>
+</html>
