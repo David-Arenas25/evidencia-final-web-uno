@@ -1,5 +1,9 @@
 const contenedorProyectos = document.getElementById("projects-container")
 const inputNombreProyecto = document.getElementById("search-name")
+const inputEstadoProyecto = document.getElementById("search-status")
+const inputFechaProyecto = document.getElementById("search-date")
+
+
 
 const proyectos = [
     {
@@ -76,5 +80,5 @@ const proyectos = [
 
 
 export {
-    proyectos,contenedorProyectos,inputNombreProyecto
+    proyectos,contenedorProyectos,inputNombreProyecto,inputEstadoProyecto,inputFechaProyecto
 }
