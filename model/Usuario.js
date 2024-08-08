@@ -1,13 +1,10 @@
-usuario ={
-    nombre,
-    correo,
-    contrasenia,
-    proyectos
-}
-
-usuarios = []
+let usuario = {
+    nombre: "",
+    correo: "",
+    contrasenia: "",
+    proyectos: []
+};
 
 
 
-
-export {usuario, usuarios}
+export { usuario };

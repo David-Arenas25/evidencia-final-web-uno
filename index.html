@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro e Inicio de Sesión</title>
-    <link rel="stylesheet" href="styles/css.css">
+    <link rel="stylesheet" href="./view/styles/css.css">
 </head>
 <body>
     <div class="container">
@@ -26,7 +26,7 @@
                 <option value="docente">Docente</option>
             </select>
 
-            <button id="register-button" type="submit">Registrarse</button>
+            <button id="register-button" type="button">Registrarse</button>
         </form>
     </div>
     <div class="container">
@@ -38,9 +38,9 @@
             <label for="login-password">Contraseña:</label>
             <input type="password" id="login-password" name="password" required>
 
-            <button id="login-button" type="submit">Iniciar Sesión</button>
+            <button id="login-button" type="button">Iniciar Sesión</button>
         </form>
     </div>
-    <script type="module" src="main.js"></script>
+    <script type="module" src="./controller/main.js"></script>
 </body>
 </html>
