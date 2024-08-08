@@ -7,18 +7,20 @@
     <link rel="stylesheet" href="./styles/proyecto.css">
 </head>
 <body>
-    <div class="search-container">
-        <input type="text" id="search-name" placeholder="Buscar por nombre de proyecto">
-        <select id="search-status">
-            <option disabled value="">Buscar por estado</option>
-            <option value="Completado">Completado</option>
-            <option value="En progreso">En progreso</option>
-            <option value="Pendiente">Pendiente</option>
-        </select>
-        <input type="date" id="search-date">
-    </div>
-    <div class="projects-container" id="projects-container">
-        <!-- Aquí se mostrarán los proyectos -->
+    <div class="container">
+        <div class="search-container">
+            <input type="text" id="search-name" placeholder="Buscar por nombre de proyecto">
+            <select id="search-status">
+                <option disabled value="">Buscar por estado</option>
+                <option value="Completado">Completado</option>
+                <option value="En progreso">En progreso</option>
+                <option value="Pendiente">Pendiente</option>
+            </select>
+            <input type="date" id="search-date" placeholder="Selecciona una fecha" pattern="\d{4}-\d{2}-\d{2}">
+        </div>
+        <div class="projects-container" id="projects-container">
+            <!-- Aquí se mostrarán los proyectos -->
+        </div>
     </div>
 
     <script type="module" src="../controller/main.js"></script>
