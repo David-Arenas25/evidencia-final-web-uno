@@ -6,18 +6,17 @@ const nombreRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
 const valorCorreoInput = document.querySelector("#email")
 const valorContrasenaInput = document.querySelector("#password")
 const valorNombreInput = document.querySelector("#name")
-const enviarFormulario = document.querySelectorAll("#mi-boton")
-
-const correoUsuario = document.getElementById('login-email')
-const contraseniaUsuario = document.getElementById('login-password')
-
-const validacionFormulario = document.getElementById("register-button")
-const validacionInicioSesionFormulario = document.getElementById("login-button")
+const valorRolInput = document.querySelector("#role")
+const registroUsuario = document.querySelector("#registerButton")
+const correoUsuario = document.querySelector('#loginEmail')
+const contraseniaUsuario = document.querySelector('#loginPassword')
+const inicioSesionUsuario = document.querySelector("#loginButton")
+const cambiarForm = document.querySelector(".toggle-link")
 
 
 
 export{
-    correoRegex,contrasenaRegex,nombreRegex,valorCorreoInput,valorContrasenaInput,valorNombreInput,enviarFormulario,correoUsuario,contraseniaUsuario,validacionFormulario,validacionInicioSesionFormulario
+    valorRolInput,correoRegex,contrasenaRegex,nombreRegex,valorCorreoInput,valorContrasenaInput,valorNombreInput,inicioSesionUsuario,correoUsuario,contraseniaUsuario,registroUsuario,cambiarForm
 }
 
 

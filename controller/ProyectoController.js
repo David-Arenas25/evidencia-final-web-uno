@@ -1,70 +1,75 @@
-// controller/main.js
-import { proyectos, contenedorProyectos, inputNombreProyecto, inputEstadoProyecto, inputFechaProyecto } from "../model/Proyectos.js";
-import { inicioSesion } from "./ValidacionesController.js";
-
-// Estado global para el filtro
-export let filtro = "";
+import { contenedorProyectos, inputEstadoProyecto, proyectos } from "../model/Proyectos.js";
+import { inputNombreProyecto, inputFechaProyecto } from "../model/Proyectos.js";
 
 
-// Función para mostrar proyectos
-function mostrarProyectos() {
-    contenedorProyectos.innerHTML = ''; // Limpia el contenedor de proyectos
+let nuevosProyectos = [];
 
-    const proyectosFiltrados = filtrarProyectos();
+// Function to create and display projects
+export function crearProyectos() {
+    contenedorProyectos.innerHTML = ''; // Clear the container before adding new projects
 
-    // Crea tarjetas para cada proyecto filtrado
-    proyectosFiltrados.forEach(proyecto => {
-        const card = document.createElement('div');
-        card.classList.add('card');    
-        let estadoClass = '';
-        switch (proyecto.estado) {
-            case 'Completado':
-                estadoClass = 'estado-completado';
-                break;
-            case 'En progreso':
-                estadoClass = 'estado-en-progreso';
-                break;
-            case 'Pendiente':
-                estadoClass = 'estado-pendiente';
-                break;
+    nuevosProyectos.forEach(proyecto => {
+        const contenedor = document.createElement('div');
+        contenedor.classList.add('project');
+        const titulo = document.createElement('h2');
+        titulo.innerText = proyecto.nombre;
+        const fecha = document.createElement('p');
+        fecha.innerText = proyecto.fecha;
+        const estado = document.createElement('p');
+        estado.innerText = proyecto.estado;
+
+        // Add class based on project status
+        if (proyecto.estado === 'Completado') {
+            contenedor.classList.add('completado');
+        } else if (proyecto.estado === 'Pendiente') {
+            contenedor.classList.add('pendiente');
+        } else if (proyecto.estado.trim() === 'En progreso') {
+            contenedor.classList.add('en-progreso');
         }
-    
-        card.innerHTML = `
-            <h3>${proyecto.nombre}</h3>
-            <p><strong>Fecha:</strong> ${proyecto.fecha}</p>
-            <p class="${estadoClass}"><strong>Estado:</strong> ${proyecto.estado}</p>
-            <p><strong>Descripción:</strong> ${proyecto.descripcion}</p>
-            <p><strong>Usuario:</strong> ${proyecto.usuario.name || 'No asignado'}</p>
-        `;
-    
-        contenedorProyectos.append(card);
+        contenedor.append(titulo, fecha, estado);
+        contenedorProyectos.append(contenedor);
     });
-}
 
-// Función para filtrar proyectos
-function filtrarProyectos() {
-    const nombre = inputNombreProyecto.value.trim().toLowerCase();
-    const estado = inputEstadoProyecto.value.trim();
-    const fecha = inputFechaProyecto.value.trim();
-
-    return proyectos.filter(proyecto => {
-        return (
-            (filtro === 'nombre' && proyecto.nombre.trim().toLowerCase().includes(nombre)) ||
-            (filtro === 'estado' && proyecto.estado.includes(estado)) ||
-            (filtro === 'fecha' && proyecto.fecha === fecha) ||
-            (filtro === 'todos' && proyecto)
-        );
-    });
-}
-
-// Función para actualizar el filtro y mostrar proyectos
-export const actualizarFiltro = (nuevoFiltro) => {
-    filtro = nuevoFiltro;
-    mostrarProyectos();
+    
 }
 
 
-// Manejo de eventos para actualizar los filtros
+export function filtrarProyectos(filtro){
+    console.log('entro')
+    const fechaProyecto = inputFechaProyecto.value 
+    const estadoProyecto = inputEstadoProyecto.value
+    const nombreProyecto = inputNombreProyecto.value
+    const arrayFiltroFecha = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
+    const arrayFiltroEstado = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
+    const arrayFiltroNombre = proyectos.filter(proyecto => proyecto.nombre.includes(nombreProyecto))
+    console.log(arrayFiltroEstado)
+
+    switch (filtro) {
+        case 'fecha':
+            nuevosProyectos = arrayFiltroFecha   
+            console.log("paso algo")
+
+            break;
+        case 'estado':
+            nuevosProyectos =  arrayFiltroEstado
+            console.log("paso algo")
+
+            break;
+
+        case 'nombre':
+            nuevosProyectos =  arrayFiltroNombre
+            console.log("paso algo")
+
+            break;
+    
+        default:
+            console.log("no paso nada")
+            break;
+    }
+
+    crearProyectos()
+
+}
 
 
 

@@ -3,26 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyectos</title>
-    <link rel="stylesheet" href="./styles/proyecto.css">
+    <title>Panel de Proyectos</title>
+    <link rel="stylesheet" href="styles/proyecto.css">
 </head>
 <body>
     <div class="container">
-        <div class="search-container">
-            <input type="text" id="search-name" placeholder="Buscar por nombre de proyecto">
+        <h1>Panel de Proyectos</h1>
+        <div class="search-bar">
+            <input type="text" id="search-name" placeholder="Buscar por nombre">
+            <input type="date" id="search-date">
             <select id="search-status">
-                <option disabled value="">Buscar por estado</option>
-                <option value="Completado">Completado</option>
-                <option value="En progreso">En progreso</option>
-                <option value="Pendiente">Pendiente</option>
+                <option >Todos</option>
+                <option >Completado</option>
+                <option >En progreso</option>
+                <option >Pendiente</option>
             </select>
-            <input type="date" id="search-date" placeholder="Selecciona una fecha" pattern="\d{4}-\d{2}-\d{2}">
+            <button id="buscar">Buscar</button>
         </div>
-        <div class="projects-container" id="projects-container">
-            <!-- Aquí se mostrarán los proyectos -->
+        <div class="project-list">
+            <div class="project completado">
+                <h2>Proyecto 1</h2>
+                <p>Fecha: 2023-08-01</p>
+                <p>Estado: Completado</p>
+            </div>
+            <div class="project en-progreso">
+                <h2>Proyecto 2</h2>
+                <p>Fecha: 2023-08-05</p>
+                <p>Estado: En Progreso</p>
+            </div>
+            <div class="project finalizado">
+                <h2>Proyecto 3</h2>
+                <p>Fecha: 2023-08-10</p>
+                <p>Estado: Finalizado</p>
+            </div>
         </div>
     </div>
-
     <script type="module" src="../controller/main.js"></script>
 </body>
 </html>

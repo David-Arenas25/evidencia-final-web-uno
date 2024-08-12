@@ -1,4 +1,4 @@
-import { correoRegex, contrasenaRegex, nombreRegex, valorCorreoInput, valorContrasenaInput, valorNombreInput, enviarFormulario, correoUsuario, contraseniaUsuario, validacionFormulario } from '../model/Validaciones.js'
+import { correoRegex, contrasenaRegex, nombreRegex, valorCorreoInput, valorContrasenaInput, valorNombreInput, correoUsuario, contraseniaUsuario } from '../model/Validaciones.js'
 export let usuarios = []
 export let inicioSesion = false
 
@@ -31,7 +31,6 @@ function registrase() {
         }
         usuarios.push(usuario)
         console.log("ya pusheo" + usuario.nombre + usuario.correo + usuario.contrasenia)
-
         let usuariosString = localStorage.setItem('usuarios', JSON.stringify(usuarios))
 
 
@@ -61,3 +60,11 @@ export function iniciarSesion() {
 
 export default registrase
 
+export function toggleForms() {
+    const registerForm = document.getElementById('registerForm');
+    const loginForm = document.getElementById('loginForm');
+    registerForm.classList.toggle('hidden');
+    registerForm.classList.toggle('visible');
+    loginForm.classList.toggle('hidden');
+    loginForm.classList.toggle('visible');
+}
