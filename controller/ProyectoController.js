@@ -41,35 +41,27 @@ export function filtrarProyectos(filtro){
     const nombreProyecto = inputNombreProyecto.value
     const arrayFiltroFecha = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
     const arrayFiltroEstado = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
-    const arrayFiltroNombre = proyectos.filter(proyecto => proyecto.nombre.includes(nombreProyecto))
+    const arrayFiltroNombre = proyectos.filter(proyecto => proyecto.nombre.match(nombreProyecto))
     console.log(arrayFiltroEstado)
-
+    if(arrayFiltroFecha && arrayFiltroNombre && arrayFiltroEstado){
     switch (filtro) {
         case 'fecha':
-            nuevosProyectos = arrayFiltroFecha   
+            nuevosProyectos = arrayFiltroFecha 
             console.log("paso algo")
-
             break;
         case 'estado':
             nuevosProyectos =  arrayFiltroEstado
             console.log("paso algo")
-
             break;
-
         case 'nombre':
             nuevosProyectos =  arrayFiltroNombre
             console.log("paso algo")
-
-            break;
-    
+            break;    
         default:
             console.log("no paso nada")
             break;
-    }
-
-    crearProyectos()
-
+            }
+    crearProyectos()  
 }
-
-
-
+  return nuevosProyectos
+}

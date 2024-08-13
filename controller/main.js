@@ -1,60 +1,60 @@
-import { iniciarSesion} from "./ValidacionesController.js";
+import { iniciarSesion } from "./ValidacionesController.js";
 import registrase from "./ValidacionesController.js";
-import { registroUsuario,inicioSesionUsuario, cambiarForm } from "../model/Validaciones.js";
-import { toggleForms } from "./ValidacionesController.js";
-import {  inputNombreProyecto, inputEstadoProyecto,inputFechaProyecto } from "../model/Proyectos.js";
+import { registroUsuario, inicioSesionUsuario, cambiarForm } from "../model/Validaciones.js";
+import { inputNombreProyecto, inputEstadoProyecto, inputFechaProyecto } from "../model/Proyectos.js";
 import { filtrarProyectos } from "./ProyectoController.js";
 
 
+function toggleForms() {
+    document.getElementById('registerForm').classList.toggle('hidden');
+    document.getElementById('registerForm').classList.toggle('visible');
+    document.getElementById('loginForm').classList.toggle('hidden');
+    document.getElementById('loginForm').classList.toggle('visible');
+}
 
+function showLoader() {
+    document.getElementById('loader').style.display = 'block';
+    setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+        toggleForms();
+    }, 2000); // Simula un tiempo de carga de 2 segundos
+}
 
+if(inputNombreProyecto){
 
-// Escucha el evento 'keyup' en el campo de entrada
 let debounceTimer;
 
 inputNombreProyecto.addEventListener('keydown', () => {
-    // Limpiar el temporizador anterior si existe
+
     clearTimeout(debounceTimer);
 
-    // Usa setTimeout para retrasar la ejecución de la función de filtrado
     debounceTimer = setTimeout(() => {
-        // Llama a la función filtrarProyectos con el valor del campo de entrada
+
         filtrarProyectos('nombre');
-    }, 1000); // Ajusta el tiempo de retardo (en milisegundos) según lo necesites
+    }, 1000);
+});
+inputFechaProyecto.addEventListener('change', () => {
+    filtrarProyectos('fecha');
 });
 
-
-inputFechaProyecto.addEventListener('input', ()=>{ 
-
-    filtrarProyectos('fecha')
-})
-inputEstadoProyecto.addEventListener('click', ()=>{
-
+inputEstadoProyecto.addEventListener('click', () => {
     filtrarProyectos('estado')
 })
 
-
-
-
-if(cambiarForm){
-cambiarForm.addEventListener('changes',toggleForms)
+if (cambiarForm) {
+    cambiarForm.addEventListener('click', toggleForms)
 }
-// if (inputEstadoProyecto && inputNombreProyecto && inputFechaProyecto) {
-//     inputNombreProyecto.addEventListener('input', () => actualizarFiltro('nombre'));
-//     inputEstadoProyecto.addEventListener('input', () => actualizarFiltro('estado'));
-//     inputFechaProyecto.addEventListener('input', () => actualizarFiltro('fecha'));
-//     if(inicioSesion) {
-//     alert('debe inciar sesion para continuar')
-//     window.location.href = ('../index.html')//usar confirnm...
-    
-// }
-
-
 if (registroUsuario) {
-    registroUsuario.addEventListener('click',registrase)
+    registroUsuario.addEventListener('click', registrase)
 }
 if (inicioSesionUsuario) {
-    inicioSesionUsuario.addEventListener('click', iniciarSesion)
+    inicioSesionUsuario.addEventListener('click', () => {    
+        showLoader()   
+        iniciarSesion()
+        
+
+    })
+}
 }
 
 

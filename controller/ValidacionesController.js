@@ -58,13 +58,6 @@ export function iniciarSesion() {
     })
 }
 
+
 export default registrase
 
-export function toggleForms() {
-    const registerForm = document.getElementById('registerForm');
-    const loginForm = document.getElementById('loginForm');
-    registerForm.classList.toggle('hidden');
-    registerForm.classList.toggle('visible');
-    loginForm.classList.toggle('hidden');
-    loginForm.classList.toggle('visible');
-}
