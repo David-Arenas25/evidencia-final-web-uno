@@ -2,13 +2,57 @@ import { contenedorProyectos, inputEstadoProyecto, proyectos } from "../model/Pr
 import { inputNombreProyecto, inputFechaProyecto } from "../model/Proyectos.js";
 
 
-let nuevosProyectos = [];
+export let nuevosProyectos = [];
 
-// Function to create and display projects
-export function crearProyectos() {
-    contenedorProyectos.innerHTML = ''; // Clear the container before adding new projects
+export function getAll() {
+    filtrarProyectos('Todos')
+}
+function normalizeString(str) {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
 
-    nuevosProyectos.forEach(proyecto => {
+
+export function filtrarProyectos(filtro) {    
+    const fechaProyecto = inputFechaProyecto.value
+    const estadoProyecto = inputEstadoProyecto.value
+    const nombreProyecto = inputNombreProyecto.value
+    const arrayFiltroFecha = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
+    const arrayFiltroEstado = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
+    const arrayFiltroNombre = proyectos.filter(proyecto => normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase())))
+    let proyectosActualizadoString = localStorage.getItem('nuevosProyectos')
+    let proyectosActualizadoStorage = JSON.parse(proyectosActualizadoString)
+
+    if (filtro === '') {
+        console.log('entro')
+        if (!proyectosActualizadoStorage) {
+            nuevosProyectos = proyectos
+        } else {
+            nuevosProyectos = proyectosActualizadoStorage
+        }    }
+    else if (filtro === 'Todos') {
+        nuevosProyectos = proyectos
+    }
+    else if (filtro === 'fecha') {
+        nuevosProyectos = arrayFiltroFecha
+    }
+    else if (filtro === 'estado') {
+        nuevosProyectos = arrayFiltroEstado
+    }
+    else if (filtro === 'nombre') {
+
+        nuevosProyectos = arrayFiltroNombre
+    }
+    else if (filtro = 'nose') {
+        nuevosProyectos = [...nuevosProyectos]
+    }
+    if (nuevosProyectos) {
+        localStorage.setItem('nuevosProyectos', JSON.stringify(nuevosProyectos))
+    } else {
+        localStorage.setItem('nuevosProyectos', JSON.stringify(proyectos))
+    }
+
+    contenedorProyectos.innerHTML = '';
+    proyectosActualizadoStorage.forEach(proyecto => {
         const contenedor = document.createElement('div');
         contenedor.classList.add('project');
         const titulo = document.createElement('h2');
@@ -17,8 +61,6 @@ export function crearProyectos() {
         fecha.innerText = proyecto.fecha;
         const estado = document.createElement('p');
         estado.innerText = proyecto.estado;
-
-        // Add class based on project status
         if (proyecto.estado === 'Completado') {
             contenedor.classList.add('completado');
         } else if (proyecto.estado === 'Pendiente') {
@@ -28,40 +70,8 @@ export function crearProyectos() {
         }
         contenedor.append(titulo, fecha, estado);
         contenedorProyectos.append(contenedor);
+
     });
 
-    
-}
 
-
-export function filtrarProyectos(filtro){
-    console.log('entro')
-    const fechaProyecto = inputFechaProyecto.value 
-    const estadoProyecto = inputEstadoProyecto.value
-    const nombreProyecto = inputNombreProyecto.value
-    const arrayFiltroFecha = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
-    const arrayFiltroEstado = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
-    const arrayFiltroNombre = proyectos.filter(proyecto => proyecto.nombre.match(nombreProyecto))
-    console.log(arrayFiltroEstado)
-    if(arrayFiltroFecha && arrayFiltroNombre && arrayFiltroEstado){
-    switch (filtro) {
-        case 'fecha':
-            nuevosProyectos = arrayFiltroFecha 
-            console.log("paso algo")
-            break;
-        case 'estado':
-            nuevosProyectos =  arrayFiltroEstado
-            console.log("paso algo")
-            break;
-        case 'nombre':
-            nuevosProyectos =  arrayFiltroNombre
-            console.log("paso algo")
-            break;    
-        default:
-            console.log("no paso nada")
-            break;
-            }
-    crearProyectos()  
-}
-  return nuevosProyectos
 }

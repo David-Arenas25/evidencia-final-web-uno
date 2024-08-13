@@ -1,6 +1,10 @@
+import { cerrarSesionBtn } from '../model/Proyectos.js'
 import { correoRegex, contrasenaRegex, nombreRegex, valorCorreoInput, valorContrasenaInput, valorNombreInput, correoUsuario, contraseniaUsuario } from '../model/Validaciones.js'
 export let usuarios = []
 export let inicioSesion = false
+
+
+
 
 function registrase() {
     let esValido = true
@@ -42,21 +46,44 @@ function registrase() {
 
 
 export function iniciarSesion() {
+    console.log('entro')
     let usuariosString = localStorage.getItem('usuarios')
     let usuariosStorage = JSON.parse(usuariosString)
     usuariosStorage.forEach(usuario => {
         if (usuario.correo === correoUsuario.value && usuario.contrasenia === contraseniaUsuario.value) {
-            console.log("ganó")
-            console.log(true)
             inicioSesion = true
             window.location.href = ('/view/proyecto.html')
+            
         } else {
-            console.log(false)
+            console.log('no coincide')
             inicioSesion = false
         }
 
     })
 }
+
+export function cerrarSesion(){
+    inicioSesion = false
+    validarRegistro()
+    
+}
+
+export function validarRegistro() {
+    // Mostrar overlay con mensaje
+    const overlay = document.getElementById('overlay');
+    overlay.classList.add('show');
+
+    // Aplicar el efecto de desvanecimiento
+    document.body.classList.add('fade-out');
+
+    setTimeout(() => {    
+        if (inicioSesion === false) {
+            window.location.href = '/index.html'; 
+        }
+    }, 1000);
+    console.log('Inicio de sesión: ' + inicioSesion);
+}
+
 
 
 export default registrase

@@ -1,0 +1,114 @@
+/* General */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #343a40;
+    text-align: center;
+}
+
+/* Barra de búsqueda */
+.search-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.search-bar input,
+.search-bar select,
+.search-bar button {
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.search-bar input[type="text"] {
+    flex: 2;
+    min-width: 200px;
+}
+
+.search-bar select,
+.search-bar button {
+    min-width: 150px;
+}
+
+.search-bar button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #0056b3;
+}
+
+/* Lista de proyectos */
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Elementos de proyecto */
+.project{
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.completado {
+    background-color: #d4edda;
+    border-left: 6px solid #28a745;
+}
+
+.pendiente {
+    background-color: #f8d7da;
+    border-left: 6px solid #dc3545;
+}
+
+.en-progreso {
+    background-color: #fff3cd;
+    border-left: 6px solid #ffc107;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .search-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-bar input,
+    .search-bar select,
+    .search-bar button {
+        width: 100%;
+    }
+}

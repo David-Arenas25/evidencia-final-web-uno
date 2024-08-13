@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Proyectos</title>
-    <link rel="stylesheet" href="styles/proyecto.css">
+    <link rel="stylesheet" href="/view/styles/proyecto.css"> <!-- Enlaza tu archivo CSS -->
 </head>
-
 <body>
     <div class="container">
         <h1>Panel de Proyectos</h1>
@@ -15,17 +13,17 @@
             <input type="text" id="search-name" placeholder="Buscar por nombre">
             <input type="date" id="search-date">
             <select id="search-status">
-                <option>Todos</option>
-                <option>Completado</option>
-                <option>En progreso</option>
-                <option>Pendiente</option>
+                <option >Todos</option>
+                <option value="Completado">Completado</option>
+                <option value="En progreso">En progreso</option>
+                <option value="Pendiente">Pendiente</option>
             </select>
             <button id="buscar">Buscar</button>
         </div>
-        <div class="project-list"></div>
-
+        <div class="project-list">
+            <!-- Aquí se agregarán los proyectos dinámicamente -->
+        </div>
     </div>
     <script type="module" src="../controller/main.js"></script>
 </body>
-
 </html>
