@@ -4,55 +4,49 @@ import { inputNombreProyecto, inputFechaProyecto } from "../model/Proyectos.js";
 
 export let nuevosProyectos = [];
 
-export function getAll() {
-    filtrarProyectos('Todos')
-}
+
 function normalizeString(str) {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
+function cargarProyectos(){
+    const storage = localStorage.getItem('arrayFiltro')
+    const storageParse = JSON.parse(storage)
+    return storageParse || proyectos
+}
 
-export function filtrarProyectos(filtro) {    
+export function filtrarProyectos(filtro) {
+    const propyectosCargados = cargarProyectos()
     const fechaProyecto = inputFechaProyecto.value
     const estadoProyecto = inputEstadoProyecto.value
     const nombreProyecto = inputNombreProyecto.value
-    const arrayFiltroFecha = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
-    const arrayFiltroEstado = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
-    const arrayFiltroNombre = proyectos.filter(proyecto => normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase())))
-    let proyectosActualizadoString = localStorage.getItem('nuevosProyectos')
-    let proyectosActualizadoStorage = JSON.parse(proyectosActualizadoString)
+    let arrayFiltro = proyectos
+    switch (filtro) {
+        case 'fecha':
+            arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
+            break;
+        case 'nombre':
+            arrayFiltro = proyectos.filter(proyecto => normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase())))
+            break;
+        case 'estado':
+            arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
+            break;
+        default:
+            arrayFiltro = propyectosCargados
+            break;
+     
 
-    if (filtro === '') {
-        console.log('entro')
-        if (!proyectosActualizadoStorage) {
-            nuevosProyectos = proyectos
-        } else {
-            nuevosProyectos = proyectosActualizadoStorage
-        }    }
-    else if (filtro === 'Todos') {
-        nuevosProyectos = proyectos
     }
-    else if (filtro === 'fecha') {
-        nuevosProyectos = arrayFiltroFecha
-    }
-    else if (filtro === 'estado') {
-        nuevosProyectos = arrayFiltroEstado
-    }
-    else if (filtro === 'nombre') {
+    localStorage.setItem('arrayFiltro',JSON.stringify(arrayFiltro))
 
-        nuevosProyectos = arrayFiltroNombre
-    }
-    else if (filtro = 'nose') {
-        nuevosProyectos = [...nuevosProyectos]
-    }
-    if (nuevosProyectos) {
-        localStorage.setItem('nuevosProyectos', JSON.stringify(nuevosProyectos))
-    } else {
-        localStorage.setItem('nuevosProyectos', JSON.stringify(proyectos))
-    }
+    crearProyectos(cargarProyectos())
+}
 
+
+function crearProyectos(arr) {
+   
     contenedorProyectos.innerHTML = '';
-    proyectosActualizadoStorage.forEach(proyecto => {
+    arr.forEach(proyecto => {
         const contenedor = document.createElement('div');
         contenedor.classList.add('project');
         const titulo = document.createElement('h2');
@@ -72,6 +66,6 @@ export function filtrarProyectos(filtro) {
         contenedorProyectos.append(contenedor);
 
     });
-
-
 }
+
+

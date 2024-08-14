@@ -1,12 +1,11 @@
 import { iniciarSesion} from "./ValidacionesController.js";
 import { cerrarSesionBtn } from "../model/Proyectos.js";
 import registrase from "./ValidacionesController.js";
-import {validarRegistro} from "./ValidacionesController.js";
 import { registroUsuario, inicioSesionUsuario } from "../model/Validaciones.js";
 import { inputNombreProyecto, inputEstadoProyecto, inputFechaProyecto } from "../model/Proyectos.js";
 import { filtrarProyectos } from "./ProyectoController.js";
 import { cerrarSesion } from "./ValidacionesController.js";
-import { nuevosProyectos,getAll } from "./ProyectoController.js";
+
 
 filtrarProyectos('')
 
