@@ -16,9 +16,9 @@ if (registroUsuario && inicioSesionUsuario ) {
 if(cerrarSesionBtn)cerrarSesionBtn.addEventListener('click',cerrarSesion)
 
 
-if (inputNombreProyecto) {
+
     let debounceTimer;
-    inputNombreProyecto.addEventListener('keydown', () => {
+    inputNombreProyecto.addEventListener('input', () => {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
             filtrarProyectos('nombre');;
@@ -34,7 +34,7 @@ if (inputNombreProyecto) {
 
     })      
 
-}
+
 
 
 // Obtener referencias a los elementos del DOM

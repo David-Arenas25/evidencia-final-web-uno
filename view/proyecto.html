@@ -13,12 +13,15 @@
             <input type="text" id="search-name" placeholder="Buscar por nombre">
             <input type="date" id="search-date">
             <select id="search-status">
+                <option  selected>Seleccione</option>
                 <option >Todos</option>
                 <option value="Completado">Completado</option>
                 <option value="En progreso">En progreso</option>
                 <option value="Pendiente">Pendiente</option>
             </select>
-            <button id="buscar">Buscar</button>
+        </div>
+        <div id="filter-warning" class="warning-message" style="display: none;">
+            Se están aplicando más de dos filtros.
         </div>
         <div class="project-list">
             <!-- Aquí se agregarán los proyectos dinámicamente -->
