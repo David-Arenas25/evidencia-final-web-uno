@@ -1,22 +1,22 @@
 import { iniciarSesion} from "./ValidacionesController.js";
 import { cerrarSesionBtn } from "../model/Proyectos.js";
 import registrase from "./ValidacionesController.js";
-import { registroUsuario, inicioSesionUsuario } from "../model/Validaciones.js";
+import { registroUsuario, inicioSesionUsuario, allInputs } from "../model/Validaciones.js";
 import { inputNombreProyecto, inputEstadoProyecto, inputFechaProyecto } from "../model/Proyectos.js";
 import { filtrarProyectos } from "./ProyectoController.js";
 import { cerrarSesion } from "./ValidacionesController.js";
 
 
-filtrarProyectos('')
-
 if (registroUsuario && inicioSesionUsuario ) {
     registroUsuario.addEventListener('click', registrase)
-    inicioSesionUsuario.addEventListener('click', iniciarSesion)  
-}
-if(cerrarSesionBtn)cerrarSesionBtn.addEventListener('click',cerrarSesion)
+    inicioSesionUsuario.addEventListener('click', iniciarSesion)  }
+
+if(cerrarSesionBtn){cerrarSesionBtn.addEventListener('click',cerrarSesion)}
 
 
 
+    if(inputNombreProyecto)
+    {filtrarProyectos('')
     let debounceTimer;
     inputNombreProyecto.addEventListener('input', () => {
         clearTimeout(debounceTimer);
@@ -24,15 +24,20 @@ if(cerrarSesionBtn)cerrarSesionBtn.addEventListener('click',cerrarSesion)
             filtrarProyectos('nombre');;
         }, 1000);
     });
-
+}
+    
+if(inputFechaProyecto){
     inputFechaProyecto.addEventListener('input', () => {
         filtrarProyectos('fecha');
-    });
+    });}
+    if(inputEstadoProyecto){
 
     inputEstadoProyecto.addEventListener('input', () => {
         filtrarProyectos('estado')
 
-    })      
+    })    
+ 
+}
 
 
 

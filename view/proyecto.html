@@ -4,17 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Proyectos</title>
-    <link rel="stylesheet" href="/view/styles/proyecto.css"> <!-- Enlaza tu archivo CSS -->
+    <link rel="stylesheet" href="/view/styles/proyecto.css">
 </head>
 <body>
+    <div id="overlay" class="overlay">
+        <div class="overlay-content">
+            <p>Validando...</p>
+        </div>
+    </div>
     <div class="container">
-        <h1>Panel de Proyectos</h1>
+        <header class="header">
+            <h1>Panel de Proyectos</h1>
+            <button class="logout-button">Cerrar Sesión</button>
+        </header>
         <div class="search-bar">
             <input type="text" id="search-name" placeholder="Buscar por nombre">
             <input type="date" id="search-date">
             <select id="search-status">
-                <option  selected>Seleccione</option>
-                <option >Todos</option>
+                <option value="" disabled selected>Seleccione</option>
+                <option value="Todos">Todos</option>
                 <option value="Completado">Completado</option>
                 <option value="En progreso">En progreso</option>
                 <option value="Pendiente">Pendiente</option>
@@ -24,7 +32,7 @@
             Se están aplicando más de dos filtros.
         </div>
         <div class="project-list">
-            <!-- Aquí se agregarán los proyectos dinámicamente -->
+            <!-- Los proyectos se agregarán dinámicamente aquí -->
         </div>
     </div>
     <script type="module" src="/controller/main.js"></script>

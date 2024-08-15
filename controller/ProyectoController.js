@@ -1,5 +1,6 @@
 import { contenedorProyectos, inputEstadoProyecto, proyectos } from "../model/Proyectos.js";
 import { inputNombreProyecto, inputFechaProyecto } from "../model/Proyectos.js";
+import { cerrarSesion } from "./ValidacionesController.js";
 
 
 export let nuevosProyectos = [];
@@ -30,9 +31,10 @@ function cargarProyectos() {
 
 
 
-export function filtrarProyectos(filtro) {
+export function filtrarProyectos(filtro) {  
 
-    let arrayFiltro = cargarProyectos()
+    cerrarSesion() 
+    let arrayFiltro = proyectos
     const fechaProyecto = inputFechaProyecto.value
     const estadoProyecto = inputEstadoProyecto.value
     const nombreProyecto = inputNombreProyecto.value
@@ -40,63 +42,94 @@ export function filtrarProyectos(filtro) {
 
     if (filtro === '' && estadoProyecto === 'Seleccione' && !fechaProyecto) {
         console.log('entro al 1')
-        arrayFiltro = cargarProyectos()
     } else if (fechaProyecto && estadoProyecto === 'Seleccione' && !nombreProyecto && filtro === 'fecha') {
         console.log('entro al 2')
         arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
-    } else if (filtro === 'estado' && !nombreProyecto && !fechaProyecto) {
-        console.log('esto')
-
-        if (estadoProyecto === 'Todos') {
-            console.log('esto')
-
+    } else if (filtro === 'estado' && !nombreProyecto && !fechaProyecto ) {        
+        arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
+   
+        if (estadoProyecto === 'Todos') {         
             arrayFiltro = proyectos.filter(proyecto => proyecto)
         } else if (estadoProyecto === 'Seleccione') {
             console.log('esto')
             arrayFiltro = cargarProyectos()
-        } else {
-            console.log('esto')
+        
+        } else if(fechaProyecto && estadoProyecto !== 'Seleccione' || estadoProyecto !== 'Todos') {
+            console.log('no tiene')
+            if(filtro === 'fecha'){
+        arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto && proyecto.estado === estadoProyecto)
+            }else if(filtro === 'estado'){
+        arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
 
+            }
+        }else{
+            console.log('esto')
             arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
         }
+        
 
-    } else if (nombreProyecto && !fechaProyecto && estadoProyecto !== 'Todos' && filtro !== 'estado') {
+    }else if(estadoProyecto && !fechaProyecto && !nombreProyecto && filtro === 'fecha'){
+        console.log('mijo estado')
+        
+        arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
+    } else if (nombreProyecto && !fechaProyecto && estadoProyecto !== 'Todos' && filtro !== 'estado' && filtro !== 'nombre') {
 
         console.log('entro al 4')
         arrayFiltro = proyectos.filter(proyecto => normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase()))
         )
     } else if (nombreProyecto && fechaProyecto) {
-        
-            arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
-        if(estadoProyecto !== 'Seleccione' && estadoProyecto !== 'Todos'){ 
-        arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto && proyecto.fecha === fechaProyecto && normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase())))
-        
-        }else if(estadoProyecto === 'Todos' || estadoProyecto === 'Seleccione'){
+
+        arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
+        if (estadoProyecto !== 'Seleccione' && estadoProyecto !== 'Todos') {
+            arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto && proyecto.fecha === fechaProyecto && normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase())))
+
+        } else if (estadoProyecto === 'Todos' || estadoProyecto === 'Seleccione') {
             console.log('fin3')
-           arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto && normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase())))
+            arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto && normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase())))
 
-        }}
-
-        else if (estadoProyecto === 'Todos' && fechaProyecto && !nombreProyecto) {
-            arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
-            console.log('entro al 46666')
         }
-        else if (estadoProyecto !== 'Seleccione' && fechaProyecto && filtro === 'estado' || filtro === 'fecha'){
-            console.log('entro al 40jj')
+    }
+
+    else if (estadoProyecto === 'Todos' && fechaProyecto && !nombreProyecto && filtro !== 'nombre') {
+     
+        arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
+        console.log('entro al 46666')
+    }
+
+        else if (!nombreProyecto && fechaProyecto){
+            arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
+            console.log('entro al noseque')
+         
+         if( !nombreProyecto && estadoProyecto === 'Seleccione' && !fechaProyecto ) {
+            arrayFiltro = proyectos
+            console.log('nosequesito')
+        }
+      else if(!nombreProyecto && estadoProyecto  !== 'Seleccione' && estadoProyecto !== 'Todos'){      
+
             arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto && proyecto.estado === estadoProyecto)
-        }
-         else if (fechaProyecto && filtro === 'fecha' && !nombreProyecto && !estadoProyecto) {
+            console.log('entro al nosequedeabajao')
+
+        }else if(estadoProyecto === 'Seleccione' && fechaProyecto){
             arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
+            console.log('gano papa palb')
+        }else{
+            arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto && proyecto.estado === estadoProyecto)
+            console.log('acaa')
 
         }
+    }
+    else if (fechaProyecto && filtro === 'fecha' && !nombreProyecto && !estadoProyecto) {
+        arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
+
+    }
     else if (fechaProyecto && nombreProyecto && estadoProyecto === 'Seleccione') {
         console.log('entro al 6')
         console.log('entro a esta')
         arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto && normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase()))
         )
-    } else if (estadoProyecto && nombreProyecto && filtro !== 'Seleccione' && !fechaProyecto) {
+    } else if (nombreProyecto &&  !fechaProyecto ) {//sera?
         console.log('entro al 7')
-        if (estadoProyecto === 'Todos') {
+        if (estadoProyecto === 'Todos' || estadoProyecto === 'Seleccione') {
             console.log('seguramete')
             arrayFiltro = proyectos.filter(proyecto => normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase())))
         } else {
@@ -106,7 +139,8 @@ export function filtrarProyectos(filtro) {
             )
         }
     } else if (fechaProyecto && estadoProyecto === 'Seleccione' || estadoProyecto === 'Todos' && nombreProyecto) {
-        console.log('entro al 33') 
+   
+        console.log('entro al 33')
 
         arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto && normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase()))
         )
@@ -121,12 +155,14 @@ export function filtrarProyectos(filtro) {
     }
     else {
         console.log('no entro a ninguon')
-        arrayFiltro = cargarProyectos()
+        arrayFiltro = proyectos
     }
     localStorage.setItem('arrayFiltro', JSON.stringify(arrayFiltro))
 
     crearProyectos(cargarProyectos())
 }
+
+
 
 
 function crearProyectos(arr) {

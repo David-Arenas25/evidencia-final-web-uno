@@ -9,7 +9,12 @@ export  const registroUsuario = document.querySelector("#registerButton")
 export  const correoUsuario = document.querySelector('#loginEmail')
 export const contraseniaUsuario = document.querySelector('#loginPassword')
 export  const inicioSesionUsuario = document.querySelector("#loginButton")
-export  const cambiarForm = document.querySelectorAll(".toggle-link")
+export  const cambiarForm = document.querySelector(".toggle-link")
+export  const allInputs = document.querySelectorAll("input")
+
+
+
+
 
 
 

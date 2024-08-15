@@ -15,6 +15,13 @@ export let proyectos = [
         "usuario": {}
     },
     {
+        "nombre": "Prueba",
+        "fecha": "2024-08-06",
+        "estado": "En progreso",
+        "descripcion": "Creación de una aplicación móvil para la gestión de tareas diarias.",
+        "usuario": {}
+    },
+    {
         "nombre": "Desarrollo de Aplicación Móvil",
         "fecha": "2024-09-06",
         "estado": "Completado",
