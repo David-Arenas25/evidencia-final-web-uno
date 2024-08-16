@@ -1,3 +1,4 @@
+/* Estilos generales del cuerpo */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f5f8f9;
@@ -9,6 +10,7 @@ body {
     color: #333;
 }
 
+/* Contenedor del formulario */
 .form-container {
     width: 100%;
     max-width: 450px;
@@ -34,9 +36,10 @@ body {
     text-align: center;
 }
 
+/* Estilos del grupo de formulario */
 .form-group {
     margin-bottom: 20px;
-    position: relative; /* Needed for absolute positioning of error messages */
+    position: relative; /* Necesario para la posición absoluta de los mensajes de error */
 }
 
 .form-group label {
@@ -64,6 +67,7 @@ body {
     box-shadow: 0 0 5px rgba(52, 211, 153, 0.3);
 }
 
+/* Estilos del botón */
 .form-group button {
     width: 100%;
     padding: 14px;
@@ -87,21 +91,24 @@ body {
     transform: translateY(0);
 }
 
+/* Estilos para el mensaje de error */
 .form-group .error-message {
     color: #e64a43;
     font-size: 14px;
-    position: absolute; /* Position error messages relative to form-group */
-    bottom: -20px; /* Adjust this value based on your layout */
+    position: absolute; /* Posicionar mensajes de error relativos al grupo de formulario */
+    bottom: -20px; /* Ajustar este valor según tu diseño */
     left: 0;
     width: 100%;
     display: flex;
     justify-content: flex-start;
 }
 
+/* Estilos para ocultar elementos */
 .hidden {
     display: none;
 }
 
+/* Estilos del enlace para alternar formularios */
 .toggle-link {
     text-align: center;
     margin-top: 16px;
@@ -117,6 +124,7 @@ body {
     text-decoration: underline;
 }
 
+/* Estilos del spinner de carga */
 .spinner {
     display: none;
     border: 8px solid #e0e0e0;
@@ -135,6 +143,8 @@ body {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* Estilos para campos con error o éxito */
 .input-error {
     border: 2px solid red;
     background-color: #fdd;
@@ -143,4 +153,15 @@ body {
 .input-success {
     border: 2px solid green;
     background-color: #dfd;
+}
+
+/* Contenedor de mensajes */
+.message-container {
+    text-align: center;
+}
+
+.message-container p {
+    font-size: 18px;
+    color: #666;
+    margin-top: 16px;
 }

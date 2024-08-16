@@ -5,70 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Proyectos</title>
     <link rel="stylesheet" href="/view/styles/proyecto.css">
-    <style>
-        /* Estilos para el contenedor de alerta */
-        .alert {
-            display: none;
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: #f8d7da; /* Rojo claro */
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-            z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .alert.show {
-            display: block;
-        }
-        .alert .closebtn {
-            margin-left: 15px;
-            color: #721c24;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .alert .closebtn:hover {
-            color: #a71d2a;
-        }
-    </style>
 </head>
 <body>
-    <div id="overlay" class="overlay">
-        <div class="overlay-content">
-            <p>Validando...</p>
+    <!-- Contenedor principal que se ocultará mientras se verifica la sesión -->
+    <div id="main-content" class="hidden">
+        <div id="overlay" class="overlay">
+            <div class="overlay-content">
+                <p>Validando...</p>
+            </div>
+        </div>
+        <div class="container">
+            <header class="header">
+                <h1>Panel de Proyectos</h1>
+                <button class="logout-button">Cerrar Sesión</button>
+            </header>
+            <div class="search-bar">
+                <input type="text" id="search-name" placeholder="Buscar por nombre">
+                <input type="date" id="search-date">
+                <select id="search-status">
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="Todos">Todos</option>
+                    <option value="Completado">Completado</option>
+                    <option value="En progreso">En progreso</option>
+                    <option value="Pendiente">Pendiente</option>
+                </select>
+            </div>
+            <div id="filter-warning" class="warning-message" style="display: none;">
+                Se están aplicando más de dos filtros.
+            </div>
+            <div class="project-list">
+                <!-- Los proyectos se agregarán dinámicamente aquí -->
+            </div>
+        </div>
+        <!-- Contenedor de alerta -->
+        <div id="alertBox" class="alert">
+            <span class="closebtn" onclick="closeAlert()">&times;</span>
+            <span id="alertMessage"></span>
+        </div>
+        <div class="spinner" id="spinner"></div>
+        <div id="proyectos-container"></div>
+        <div id="no-results-message">
+            No se encontraron proyectos que coincidan con tu búsqueda.
         </div>
     </div>
-    <div class="container">
-        <header class="header">
-            <h1>Panel de Proyectos</h1>
-            <button class="logout-button">Cerrar Sesión</button>
-        </header>
-        <div class="search-bar">
-            <input type="text" id="search-name" placeholder="Buscar por nombre">
-            <input type="date" id="search-date">
-            <select id="search-status">
-                <option value="" disabled selected>Seleccione</option>
-                <option value="Todos">Todos</option>
-                <option value="Completado">Completado</option>
-                <option value="En progreso">En progreso</option>
-                <option value="Pendiente">Pendiente</option>
-            </select>
-        </div>
-        <div id="filter-warning" class="warning-message" style="display: none;">
-            Se están aplicando más de dos filtros.
-        </div>
-        <div class="project-list">
-            <!-- Los proyectos se agregarán dinámicamente aquí -->
-        </div>
-    </div>
-    <!-- Contenedor de alerta -->
-    <div id="alertBox" class="alert">
-        <span class="closebtn" onclick="closeAlert()">&times;</span>
-        <span id="alertMessage"></span>
-    </div>
-    <script type="module" src="/controller/main.js"></script>
- 
+    <script type="module" src="controller/main.js"></script>
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mainContent = document.getElementById('main-content'); // Get the element
+    mainContent.style.display = 'none'; // Hide the element
+
+    const inicioSesion = sessionStorage.getItem('inicioSesion');
+    if (inicioSesion !== 'true') {
+        // Redirige al usuario a la página de inicio
+        window.location.href = '/index.html';
+    } else {
+        // Si la sesión está activa, muestra el contenido principal
+        mainContent.classList.remove('hidden');
+        mainContent.style.display = 'block'; // Show the element
+    }
+});
+
+    </script>
 </body>
 </html>
