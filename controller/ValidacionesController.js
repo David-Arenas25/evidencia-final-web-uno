@@ -93,7 +93,7 @@ export function cerrarSesion() {
     inicioSesion = false;
     
     // Redirigir al usuario a la página de inicio
-    window.location.href = '/index.html';
+    window.location.href = 'https://david-arenas25.github.io/evidencia-final-web-uno/index.html';
 }
 
 
