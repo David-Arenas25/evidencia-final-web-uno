@@ -125,6 +125,21 @@ h1 {
     background-color: #0056b3;
 }
 
+/* Spinner */
+.spinner {
+    display: none;
+    border: 8px solid #e0e0e0;
+    border-top: 8px solid #34d399; /* Verde menta */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 1.5s linear infinite;
+}
+
 /* Lista de proyectos */
 .project-list {
     display: flex;
@@ -175,6 +190,32 @@ h1 {
     }
 }
 
+/* Estilos para el contenedor de alerta */
+.alert {
+    display: none;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f8d7da; /* Rojo claro */
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.alert.show {
+    display: block;
+}
+.alert .closebtn {
+    margin-left: 15px;
+    color: #721c24;
+    font-weight: bold;
+    cursor: pointer;
+}
+.alert .closebtn:hover {
+    color: #a71d2a;
+}
 
 /* Botón de cierre de sesión */
 .logout-button {
@@ -196,4 +237,22 @@ h1 {
 .logout-button:focus {
     outline: none;
     box-shadow: 0 0 0 4px rgba(255, 67, 67, 0.3);
+}
+
+/* Estilo para el mensaje de no resultados */
+#no-results-message {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 1.125rem;
 }

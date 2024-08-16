@@ -4,6 +4,9 @@ export const inputEstadoProyecto = document.querySelector("#search-status");
 export const inputFechaProyecto = document.querySelector("#search-date");
 export const buscarProyectos = document.querySelector("#buscar");
 export const cerrarSesionBtn = document.querySelector('.logout-button');
+export const proyectosContainer = document.getElementById('proyectos-container')
+export const noResultsMessage = document.getElementById('no-results-message');
+
 
 
 export let proyectos = [

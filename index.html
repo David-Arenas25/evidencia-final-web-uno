@@ -3,131 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formularios</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f8f9;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #333;
-        }
-        .form-container {
-            width: 100%;
-            max-width: 450px;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-            padding: 24px;
-            box-sizing: border-box;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .form-container:hover {
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-            transform: scale(1.02);
-        }
-        .form-container h2 {
-            margin-top: 0;
-            font-size: 28px;
-            color: #333;
-            font-weight: 700;
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #666;
-        }
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 16px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: #34d399; /* Verde menta */
-            outline: none;
-            box-shadow: 0 0 5px rgba(52, 211, 153, 0.3);
-        }
-        .form-group button {
-            width: 100%;
-            padding: 14px;
-            background-color: #ff6f61; /* Coral suave */
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .form-group button:hover {
-            background-color: #ff5a4d;
-            transform: translateY(-2px);
-        }
-        .form-group button:active {
-            background-color: #e64a43;
-            transform: translateY(0);
-        }
-        .toggle-link {
-            text-align: center;
-            margin-top: 16px;
-            color: #34d399; /* Verde menta */
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        .toggle-link:hover {
-            color: #2c8a72;
-            text-decoration: underline;
-        }
-        .hidden {
-            display: none;
-        }
-        .spinner {
-            display: none;
-            border: 8px solid #e0e0e0;
-            border-top: 8px solid #34d399; /* Verde menta */
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: spin 1.5s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .input-error {
-            border: 2px solid red;
-            background-color: #fdd;
-        }
-        .input-success {
-            border: 2px solid green;
-            background-color: #dfd;
-        }
-    </style>
+    <title>Validación de Credenciales</title>
+    <link rel="stylesheet" href="/view/styles/css.css">
+  
 </head>
 <body>
     <div class="form-container" id="formContainer">
+        <div class="message-container hidden">
+            <h2>Valide sus Credenciales</h2>
+            <p>Por favor, ingrese su nombre de usuario y contraseña para continuar.</p>
+        </div>
         <div id="registerForm">
             <h2>Registro</h2>
             <form>
@@ -161,7 +46,7 @@
             <form>
                 <div class="form-group">
                     <label for="loginEmail">Correo</label>
-                    <input type="email" id="loginEmail" name="loginEmail"  autocomplete="off" required>
+                    <input type="email" id="loginEmail" name="loginEmail" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <label for="loginPassword">Contraseña</label>

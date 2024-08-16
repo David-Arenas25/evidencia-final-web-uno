@@ -1,10 +1,13 @@
-import { iniciarSesion, inicioSesion, validarRegistro} from "./ValidacionesController.js";
-import { cerrarSesionBtn } from "../model/Proyectos.js";
+import { iniciarSesion, toggleForms} from "./ValidacionesController.js";
+import { cerrarSesionBtn, proyectos } from "../model/Proyectos.js";
 import registrase from "./ValidacionesController.js";
 import { registroUsuario, inicioSesionUsuario, allInputs } from "../model/Validaciones.js";
 import { inputNombreProyecto, inputEstadoProyecto, inputFechaProyecto } from "../model/Proyectos.js";
-import { filtrarProyectos } from "./ProyectoController.js";
+import { crearProyectos, filtrarProyectos } from "./ProyectoController.js";
 import { cerrarSesion } from "./ValidacionesController.js";
+
+
+
 
 if (registroUsuario){
     registroUsuario.addEventListener('click', registrase)
@@ -13,7 +16,10 @@ if (registroUsuario){
     inicioSesionUsuario.addEventListener('click', iniciarSesion)  
 }
 if(cerrarSesionBtn){cerrarSesionBtn.addEventListener('click',cerrarSesion)
-
+ 
+toggleForms()
+crearProyectos(proyectos)
+    
 }
 
     if(inputNombreProyecto){
