@@ -3,7 +3,7 @@ export const inputNombreProyecto = document.querySelector("#search-name");
 export const inputEstadoProyecto = document.querySelector("#search-status");
 export const inputFechaProyecto = document.querySelector("#search-date");
 export const buscarProyectos = document.querySelector("#buscar");
-export const cerrarSesionBtn = document.querySelector('.logout-button')
+export const cerrarSesionBtn = document.querySelector('.logout-button');
 
 
 export let proyectos = [

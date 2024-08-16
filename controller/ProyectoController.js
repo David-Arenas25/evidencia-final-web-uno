@@ -1,6 +1,6 @@
 import { contenedorProyectos, inputEstadoProyecto, proyectos } from "../model/Proyectos.js";
 import { inputNombreProyecto, inputFechaProyecto } from "../model/Proyectos.js";
-import { cerrarSesion } from "./ValidacionesController.js";
+import { cerrarSesion, iniciarSesion, inicioSesion, validarRegistro } from "./ValidacionesController.js";
 
 
 export let nuevosProyectos = [];
@@ -31,15 +31,17 @@ function cargarProyectos() {
 
 
 
-export function filtrarProyectos(filtro) {  
-
-    cerrarSesion() 
+export function filtrarProyectos(filtro,inicio) { 
+    const urlActual = window.location.pathname;
+    setTimeout(() => {
+            console.log('cargando')
+if (urlActual === "/view/proyecto.html" && inicio === true) {
+    console.log('entro por aca')
     let arrayFiltro = proyectos
     const fechaProyecto = inputFechaProyecto.value
     const estadoProyecto = inputEstadoProyecto.value
     const nombreProyecto = inputNombreProyecto.value
     const warningMessage = document.getElementById('filter-warning');
-
     if (filtro === '' && estadoProyecto === 'Seleccione' && !fechaProyecto) {
         console.log('entro al 1')
     } else if (fechaProyecto && estadoProyecto === 'Seleccione' && !nombreProyecto && filtro === 'fecha') {
@@ -160,9 +162,13 @@ export function filtrarProyectos(filtro) {
     localStorage.setItem('arrayFiltro', JSON.stringify(arrayFiltro))
 
     crearProyectos(cargarProyectos())
+}else if(inicio === false && urlActual === '/view/proyecto.html'){
+    console.log('mijo apague')
+    window.location.href = "/index.html";
 }
 
 
+    }, 2000);
 
 
 function crearProyectos(arr) {
@@ -189,3 +195,4 @@ function crearProyectos(arr) {
     });
 }
 
+}

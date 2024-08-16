@@ -1,4 +1,4 @@
-import { iniciarSesion} from "./ValidacionesController.js";
+import { iniciarSesion, inicioSesion, validarRegistro} from "./ValidacionesController.js";
 import { cerrarSesionBtn } from "../model/Proyectos.js";
 import registrase from "./ValidacionesController.js";
 import { registroUsuario, inicioSesionUsuario, allInputs } from "../model/Validaciones.js";
@@ -6,34 +6,36 @@ import { inputNombreProyecto, inputEstadoProyecto, inputFechaProyecto } from "..
 import { filtrarProyectos } from "./ProyectoController.js";
 import { cerrarSesion } from "./ValidacionesController.js";
 
-
-if (registroUsuario && inicioSesionUsuario ) {
+if (registroUsuario){
     registroUsuario.addEventListener('click', registrase)
-    inicioSesionUsuario.addEventListener('click', iniciarSesion)  }
+}
+    if (inicioSesionUsuario ) {
+    inicioSesionUsuario.addEventListener('click', iniciarSesion)  
+}
+if(cerrarSesionBtn){cerrarSesionBtn.addEventListener('click',cerrarSesion)
 
-if(cerrarSesionBtn){cerrarSesionBtn.addEventListener('click',cerrarSesion)}
+}
 
-
-
-    if(inputNombreProyecto)
-    {filtrarProyectos('')
+    if(inputNombreProyecto){
+  
     let debounceTimer;
     inputNombreProyecto.addEventListener('input', () => {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
-            filtrarProyectos('nombre');;
+            filtrarProyectos('nombre',true);;
         }, 1000);
     });
 }
     
+    
 if(inputFechaProyecto){
     inputFechaProyecto.addEventListener('input', () => {
-        filtrarProyectos('fecha');
+        filtrarProyectos('fecha',true);
     });}
     if(inputEstadoProyecto){
 
     inputEstadoProyecto.addEventListener('input', () => {
-        filtrarProyectos('estado')
+        filtrarProyectos('estado',true)
 
     })    
  
@@ -42,31 +44,6 @@ if(inputFechaProyecto){
 
 
 
-// Obtener referencias a los elementos del DOM
-const registerForm = document.getElementById('registerForm');
-const loginForm = document.getElementById('loginForm');
-const toLoginLink = document.getElementById('toLogin');
-const toRegisterLink = document.getElementById('toRegister');
-const spinner = document.getElementById('spinner');
-
-
-function toggleForms(event) { 
-    spinner.style.display = 'block';
-    if (registerForm.classList.contains('hidden')) {
-        registerForm.classList.remove('hidden');
-        loginForm.classList.add('hidden');
-        } else {
-        registerForm.classList.add('hidden');
-        loginForm.classList.remove('hidden');
-    }
-    setTimeout(() => {
-        spinner.style.display = 'none';
-    }, 300);
-}
-if(toLoginLink)
-toLoginLink.addEventListener('click', toggleForms);
-if(toRegisterLink)
-toRegisterLink.addEventListener('click', toggleForms);
 
 
 

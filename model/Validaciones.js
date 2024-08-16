@@ -11,13 +11,11 @@ export const contraseniaUsuario = document.querySelector('#loginPassword')
 export  const inicioSesionUsuario = document.querySelector("#loginButton")
 export  const cambiarForm = document.querySelector(".toggle-link")
 export  const allInputs = document.querySelectorAll("input")
-
-
-
-
-
-
-
+export const registerForm = document.getElementById('registerForm');
+export const loginForm = document.getElementById('loginForm');
+export const toLoginLink = document.getElementById('toLogin');
+export const toRegisterLink = document.getElementById('toRegister');
+export const spinner = document.getElementById('spinner');
 
 
 
