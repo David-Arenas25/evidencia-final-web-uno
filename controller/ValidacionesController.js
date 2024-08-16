@@ -86,6 +86,8 @@ function registrarse() {
 // Función para cerrar sesión
 // Función para cerrar sesión
 export function cerrarSesion() {
+    let base = "/evidencia-final-web-uno/">
+
     // Eliminar el estado de inicio de sesión en sessionStorage
     sessionStorage.removeItem('inicioSesion');
     
@@ -93,7 +95,7 @@ export function cerrarSesion() {
     inicioSesion = false;
     
     // Redirigir al usuario a la página de inicio
-    window.location.href = '/index.html';
+    window.location.href = `${base}/index.html`
 }
 
 
@@ -160,8 +162,6 @@ export function iniciarSesion() {
             // Iniciar sesión y guardar estado en sessionStorage
             sessionStorage.setItem('inicioSesion', 'true');
             alert('Inicio de sesión exitoso');
-            
-            // Llamar a validarRegistro para redirigir según sea necesario
             validarRegistro(true);
         } else {
             alert('Valide sus credenciales')
@@ -172,11 +172,13 @@ export function iniciarSesion() {
 // Función para validar el registro y redireccionar
 export function validarRegistro(inicio) {
     const rutaActual = window.location.pathname;
+    const base = "/evidencia-final-web-uno/"
+
 
     // Si el usuario ha iniciado sesión
     if (inicio) {
         // Redirigir a la página 'proyecto.html' si están en 'index.html'
-        if (rutaActual === '/index.html') {
+        if (rutaActual === `${base}/index.html`) {
             window.location.href = '/view/proyecto.html';
         
         }
@@ -184,21 +186,21 @@ export function validarRegistro(inicio) {
         // (Opcional) Manejo de redirección si ya está en 'proyecto.html'
         // Si estás en 'proyecto.html' y ya has iniciado sesión, no necesitas redirigir
         // Puedes hacer alguna otra lógica si es necesario
-        if (rutaActual === '/view/proyecto.html') {
+        if (rutaActual === `${base}/view/proyecto.html`) {
             console.log('Usuario ya está en la página de proyecto.');
         }
     } else {
         // Si el usuario no ha iniciado sesión
         // Redirigir a 'index.html' si están en 'proyecto.html'
-        if (rutaActual === '/view/proyecto.html') {
-            window.location.href = '/index.html';
+        if (rutaActual === `${base}/view/proyecto.html`) {
+            window.location.href =  `${base}/index.html`;
          
         }
 
         // (Opcional) Manejo de redirección si ya está en 'index.html'
         // Si estás en 'index.html' y no has iniciado sesión, no necesitas redirigir
         // Puedes hacer alguna otra lógica si es necesario
-        if (rutaActual === '/index.html') {
+        if (rutaActual === `${base}/index.html`) {
             console.log('Usuario en la página de inicio.');
           
         }
