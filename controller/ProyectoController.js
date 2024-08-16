@@ -43,47 +43,66 @@ export function filtrarProyectos(filtro) {
     const warningMessage = document.getElementById('filter-warning');
     if (filtro === '' && estadoProyecto === 'Seleccione' && !fechaProyecto) {
     } else if (fechaProyecto && estadoProyecto === 'Seleccione' && !nombreProyecto && filtro === 'fecha') {
+
+
         arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
     } else if (filtro === 'estado' && !nombreProyecto && !fechaProyecto) {
+    
+
         arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
 
         if (estadoProyecto === 'Todos') {
+      
             arrayFiltro = proyectos.filter(proyecto => proyecto)
         } else if (estadoProyecto === 'Seleccione') {
             arrayFiltro = cargarProyectos()
 
         } else if (fechaProyecto && estadoProyecto !== 'Seleccione' || estadoProyecto !== 'Todos') {
-            if (filtro === 'fecha') {
+  
+
+            if (filtro === 'feqwrqwcha') {
+     
                 arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto && proyecto.estado === estadoProyecto)
             } else if (filtro === 'estado') {
+     
                 arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
 
             }
         } else {
+        
+
             arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
         }
 
 
     } else if (estadoProyecto && !fechaProyecto && !nombreProyecto && filtro === 'fecha') {
 
+
+        if(estadoProyecto === 'Todos'){
+            arrayFiltro = proyectos.filter(proyecto => proyecto)
+        }else{
         arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
-    } else if (nombreProyecto && !fechaProyecto && estadoProyecto !== 'Todos' && filtro !== 'estado' && filtro !== 'nombre') {
+    }} else if (nombreProyecto && !fechaProyecto && estadoProyecto !== 'Todos' && filtro !== 'estado' && filtro !== 'nombre') {
+
 
         arrayFiltro = proyectos.filter(proyecto => normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase()))
         )
     } else if (nombreProyecto && fechaProyecto) {
+ 
 
         arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto)
         if (estadoProyecto !== 'Seleccione' && estadoProyecto !== 'Todos') {
             arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto && proyecto.fecha === fechaProyecto && normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase())))
+          
 
         } else if (estadoProyecto === 'Todos' || estadoProyecto === 'Seleccione') {
             arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto && normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase())))
-
+          
         }
     }
 
     else if (estadoProyecto === 'Todos' && fechaProyecto && !nombreProyecto && filtro !== 'nombre') {
+   
 
         arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
     }
@@ -91,59 +110,70 @@ export function filtrarProyectos(filtro) {
     else if (!nombreProyecto && fechaProyecto) {
         arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
 
+
         if (!nombreProyecto && estadoProyecto === 'Seleccione' && !fechaProyecto) {
-            arrayFiltro = proyectos
+
+        arrayFiltro = proyectos
            
         }
-        else if (!nombreProyecto && estadoProyecto !== 'Seleccione' && estadoProyecto !== 'Todos') {
+        else if (!nombreProyecto && estadoProyecto !== 'Seleccione' && estadoProyecto !== 'Todos' && filtro !== 'fecha') {
+           
 
             arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto && proyecto.estado === estadoProyecto)
 
 
         } else if (estadoProyecto === 'Seleccione' && fechaProyecto) {
             arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
+ 
         
         } else {
             arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto && proyecto.estado === estadoProyecto)
+
 
 
         }
     }
     else if (fechaProyecto && filtro === 'fecha' && !nombreProyecto && !estadoProyecto) {
         arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto)
-
+    
     }
     else if (fechaProyecto && nombreProyecto && estadoProyecto === 'Seleccione') {
 
         arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto && normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase()))
         )
     } else if (nombreProyecto && !fechaProyecto) {//sera?
+    
+
       
         if (estadoProyecto === 'Todos' || estadoProyecto === 'Seleccione') {
+  
        
             arrayFiltro = proyectos.filter(proyecto => normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase())))
         } else {
-        
+            
 
             arrayFiltro = proyectos.filter(proyecto => proyecto.estado === estadoProyecto && normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase()))
             )
         }
     } else if (fechaProyecto && estadoProyecto === 'Seleccione' || estadoProyecto === 'Todos' && nombreProyecto) {
 
+  
         
 
         arrayFiltro = proyectos.filter(proyecto => proyecto.fecha === fechaProyecto && normalizeString(proyecto.nombre.toLowerCase()).includes(normalizeString(nombreProyecto.toLowerCase()))
         )
     } else if (estadoProyecto === 'Seleccione' && !fechaProyecto) {
+
        
 
         arrayFiltro = cargarProyectos()
     } else if (estadoProyecto === 'Todos' && !fechaProyecto && !nombreProyecto) {
-  
+     
 
         arrayFiltro = proyectos
     }
     else {
+      
 
         arrayFiltro = proyectos
     }
