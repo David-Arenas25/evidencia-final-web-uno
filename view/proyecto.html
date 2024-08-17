@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Proyectos</title>
-    <link rel="stylesheet" href="styles/proyecto.css">
+    <link rel="stylesheet" href="styles/proyecto.css"> <!-- Ruta ajustada para CSS -->
 </head>
 <body>
     <!-- Contenedor principal que se ocultará mientras se verifica la sesión -->
@@ -48,23 +48,22 @@
             No se encontraron proyectos que coincidan con tu búsqueda.
         </div>
     </div>
-    <script type="module" src="/controller/main.js"></script>
+    <script type="module" src="../controller/main.js"></script> <!-- Ruta ajustada para JavaScript -->
     <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const mainContent = document.getElementById('main-content'); // Get the element
-    mainContent.style.display = 'none'; // Hide the element
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainContent = document.getElementById('main-content'); // Get the element
+            mainContent.style.display = 'none'; // Hide the element
 
-    const inicioSesion = sessionStorage.getItem('inicioSesion');
-    if (inicioSesion !== 'true') {
-        // Redirige al usuario a la página de inicio
-        window.location.href = '/index.html';
-    } else {
-        // Si la sesión está activa, muestra el contenido principal
-        mainContent.classList.remove('hidden');
-        mainContent.style.display = 'block'; // Show the element
-    }
-});
-
+            const inicioSesion = sessionStorage.getItem('inicioSesion');
+            if (inicioSesion !== 'true') {
+                // Redirige al usuario a la página de inicio
+                window.location.href = '../evidencia-final-web-uno/index.html'; // Ajusta la ruta si es necesario
+            } else {
+                // Si la sesión está activa, muestra el contenido principal
+                mainContent.classList.remove('hidden');
+                mainContent.style.display = 'block'; // Show the element
+            }
+        });
     </script>
 </body>
 </html>
